@@ -1,0 +1,65 @@
+package com.travenor.travellingapp.presentation.composable
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.travenor.travellingapp.presentation.theme.MainWhite
+import com.travenor.travellingapp.presentation.theme.Primary
+import com.travenor.travellingapp.presentation.theme.SFUI
+
+@Composable
+fun DefaultButton(
+    title: String,
+    onClick: () -> Unit
+) {
+    Button(
+        onClick = onClick,
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(60.dp)
+            .background(Primary, RoundedCornerShape(16.dp))
+            .clip(RoundedCornerShape(16.dp)),
+        colors = ButtonDefaults.buttonColors(Primary)
+    ) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                title,
+                color = MainWhite,
+                fontSize = 14.sp,
+                letterSpacing = 1.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
+                fontFamily = SFUI,
+                fontWeight = FontWeight.SemiBold,
+                lineHeight = 20.sp
+            )
+        }
+    }
+}
+
+
+@Preview
+@Composable
+private fun ButtonsPreview() {
+    DefaultButton("Example Title") { }
+}
