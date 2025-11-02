@@ -23,9 +23,19 @@ import com.travenor.travellingapp.presentation.theme.MainWhite
 import com.travenor.travellingapp.presentation.theme.Primary
 import com.travenor.travellingapp.presentation.theme.SFUI
 
+/**
+ * A base button component that is most commonly used throughout the application.
+ *
+ * Displays a centered text with rounded corners and the [Primary] background color.
+ *
+ * @param text the text displayed inside the button.
+ * @param onClick a function that will be called when the button is clicked.
+ *
+ * @sample DefaultButtonPreview
+ */
 @Composable
 fun DefaultButton(
-    title: String,
+    text: String,
     onClick: () -> Unit
 ) {
     Button(
@@ -43,7 +53,7 @@ fun DefaultButton(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                title,
+                text,
                 color = MainWhite,
                 fontSize = 14.sp,
                 letterSpacing = 1.sp,
@@ -60,6 +70,6 @@ fun DefaultButton(
 
 @Preview
 @Composable
-private fun ButtonsPreview() {
-    DefaultButton("Example Title") { }
+fun DefaultButtonPreview() {
+    DefaultButton("Example Text") { /* Do something! */ }
 }

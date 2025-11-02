@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.travenor.travellingapp.data.utils.Destinations
+import com.travenor.travellingapp.presentation.screens.forgotPasswordScreen.ForgotPasswordScreen
 import com.travenor.travellingapp.presentation.screens.homeScreen.HomeScreen
 import com.travenor.travellingapp.presentation.screens.onboardingScreen.OnboardingScreen
 import com.travenor.travellingapp.presentation.screens.onboardingScreen.OnboardingViewModel
@@ -25,6 +26,8 @@ fun NavGraph(
 
         composable<Destinations.SignIn> { SignInScreen(navController) }
         composable<Destinations.SignUp> { SignUpScreen(navController) }
+        composable<Destinations.ForgotPassword> { ForgotPasswordScreen(navController) }
+
 
         composable<Destinations.Home> { HomeScreen(navController) }
     }

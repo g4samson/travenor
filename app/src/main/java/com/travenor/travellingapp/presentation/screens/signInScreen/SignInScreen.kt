@@ -64,7 +64,9 @@ fun SignInScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(MainWhite).padding(horizontal = 20.dp).verticalScroll(rememberScrollState()),
+            .background(MainWhite)
+            .padding(horizontal = 20.dp)
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(Modifier.height(140.dp))
@@ -89,7 +91,11 @@ fun SignInScreen(
                 color = Action,
                 fontWeight = FontWeight.Medium,
                 fontFamily = SFUI,
-                lineHeight = 16.sp, modifier = Modifier.clickable{  }
+                lineHeight = 16.sp, modifier = Modifier.clickable {
+                    navController.navigate(
+                        Destinations.ForgotPassword
+                    )
+                }
             )
         }
 
@@ -125,6 +131,7 @@ fun SignInScreen(
 
         SocialNetworkComponent({}, {}, {})
 
+        Spacer(Modifier.height(60.dp))
     }
 
     SnackbarHost(

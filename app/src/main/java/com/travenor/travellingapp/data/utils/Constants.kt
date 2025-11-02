@@ -15,13 +15,13 @@ object Constants {
         OnboardingItem(
             title = "It’s a big world out\nthere go explore",
             description = "To get the best of your adventure you just need to leave and go where you like. we are waiting for you",
-            image = R.drawable.onboard_1,
+            image = R.drawable.onboard_2,
             indicator = R.drawable.indic_2
         ),
         OnboardingItem(
             title = "People don’t take trips,\ntrips take people",
             description = "To get the best of your adventure you just need to leave and go where you like. we are waiting for you",
-            image = R.drawable.onboard_1,
+            image = R.drawable.onboard_3,
             indicator = R.drawable.indic_3
         )
     )
@@ -42,6 +42,9 @@ sealed class Destinations {
     object SignUp: Destinations()
 
     @Serializable
+    object ForgotPassword: Destinations()
+
+    @Serializable
     object Home: Destinations()
 
 
@@ -57,6 +60,7 @@ sealed class Destinations {
                 "Onboarding" -> Onboarding
                 "SignIn" -> SignIn
                 "SignUp" -> SignUp
+                "ForgotPassword" -> ForgotPassword
                 "Home" -> Home
 
                 else -> null

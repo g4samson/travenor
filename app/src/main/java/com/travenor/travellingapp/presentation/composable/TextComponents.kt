@@ -36,7 +36,6 @@ fun H2Text(text: String, fontSize: TextUnit, color: Color, lineHeight: TextUnit,
         textAlign = TextAlign.Center,
         fontWeight = FontWeight.Normal,
         modifier = modifier,
-        maxLines = 1,
         fontFamily = SFUI, lineHeight = lineHeight
     )
 }

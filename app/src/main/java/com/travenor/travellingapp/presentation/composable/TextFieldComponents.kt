@@ -30,6 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.travenor.travellingapp.R
@@ -38,6 +39,19 @@ import com.travenor.travellingapp.presentation.theme.SFUI
 import com.travenor.travellingapp.presentation.theme.SubTextColor
 import com.travenor.travellingapp.presentation.theme.TextColor
 
+/**
+ * A reusable text input field component used across the app for both regular and password fields.
+ *
+ * Provides built-in styling, focus behavior, and optional password visibility toggle.
+ * Displays validation text for short passwords.
+ *
+ * @param label label text displayed when the field is empty and unfocused.
+ * @param passwordType if true, the text field will mask input and display an eye icon for visibility toggling.
+ * @param onValueChange a function called whenever the text value changes.
+ *
+ * @sample DefaultTextFieldPreview
+ * @sample DefaultTextFieldPasswordTypePreview
+ */
 @Composable
 fun DefaultTextField(label: String, passwordType: Boolean, onValueChange: (String) -> Unit) {
     var textFieldValue by remember { mutableStateOf("") }
@@ -138,3 +152,16 @@ fun DefaultTextField(label: String, passwordType: Boolean, onValueChange: (Strin
 
 
 }
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultTextFieldPreview() {
+    DefaultTextField(label = "Email", passwordType = false) { /* Handle email input */ }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultTextFieldPasswordTypePreview() {
+    DefaultTextField(label = "Password", passwordType = true) { /* Handle password input */ }
+}
+
