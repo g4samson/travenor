@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.travenor.travellingapp.R
 import com.travenor.travellingapp.data.utils.Destinations
 import com.travenor.travellingapp.presentation.screens.onboardingScreen.OnboardingViewModel
@@ -36,7 +37,7 @@ import com.travenor.travellingapp.presentation.theme.Primary
 
 @Composable
 fun SplashScreen(
-    navController: NavHostController,
+    navController: NavHostController = rememberNavController(),
     viewModel: OnboardingViewModel = hiltViewModel()
 ) {
     val skipOnboarding by viewModel.completed.collectAsState(initial = false)

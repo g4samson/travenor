@@ -8,4 +8,5 @@ data class Place(
     val rate: Double,
     val price: Double,
     val image: String?,
+    val feedbackNumber: Int,
 )

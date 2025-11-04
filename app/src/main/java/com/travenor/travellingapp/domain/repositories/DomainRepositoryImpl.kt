@@ -49,6 +49,18 @@ class DomainRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun resetPasswordEmail(email: String): Boolean {
+        return try {
+            SupabaseModule.provideSupabaseClient()
+                .auth.resetPasswordForEmail(email)
+            Log.i("GAV", "true forgot")
+            true
+        } catch (e: Exception) {
+            Log.e("GAV", "Exception: ${e.message}")
+            false
+        }
+    }
+
     //places
     override suspend fun getPlaces(): List<PlaceDto>? {
         return withContext(Dispatchers.IO) {
@@ -67,4 +79,7 @@ class DomainRepositoryImpl @Inject constructor(
             }.decodeSingle<PlaceDto>()
         }
     }
+
+    private fun buildImageUrl(imageFileName: String) =
+        "https://uuekwfcmtwhtzpghmowp.supabase.co/storage/v1/object/public/${imageFileName}".replace(" ", "%20")
 }

@@ -1,17 +1,17 @@
 package com.travenor.travellingapp.presentation.screens.signUpScreen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
@@ -25,29 +25,24 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.travenor.travellingapp.data.utils.Destinations
 import com.travenor.travellingapp.presentation.composable.DefaultButton
 import com.travenor.travellingapp.presentation.composable.DefaultTextField
-import com.travenor.travellingapp.presentation.composable.H1Text
-import com.travenor.travellingapp.presentation.composable.H2Text
 import com.travenor.travellingapp.presentation.composable.QuestionComponent
 import com.travenor.travellingapp.presentation.composable.SocialNetworkComponent
 import com.travenor.travellingapp.presentation.composable.TopAppBarComponent
-import com.travenor.travellingapp.presentation.theme.Action
 import com.travenor.travellingapp.presentation.theme.MainWhite
-import com.travenor.travellingapp.presentation.theme.SFUI
-import com.travenor.travellingapp.presentation.theme.SubTextColor
 import com.travenor.travellingapp.presentation.theme.TextColor
+import com.travenor.travellingapp.presentation.theme.Typography
 import kotlinx.coroutines.launch
 
 @Composable
 fun SignUpScreen(
-    navController: NavHostController,
+    navController: NavHostController = rememberNavController(),
     viewModel: SignUpViewModel = hiltViewModel<SignUpViewModel>()
 ) {
     val email by viewModel.email.collectAsState()
@@ -61,14 +56,16 @@ fun SignUpScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(MainWhite).padding(horizontal = 20.dp).verticalScroll(rememberScrollState()),
+            .background(MainWhite)
+            .padding(horizontal = 20.dp)
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(Modifier.height(140.dp))
 
-        H1Text("Sign up now", 26.sp, TextColor, 34.sp, Modifier)
+        Text("Sign up now", style = Typography.titleMedium)
         Spacer(Modifier.height(12.dp))
-        H2Text("Please fill the details and create account", 16.sp, SubTextColor, 20.sp, Modifier)
+        Text("Please fill the details and create account", style = Typography.bodyMedium)
         Spacer(Modifier.height(40.dp))
 
         DefaultTextField("Name Surname", false) { viewModel.onNameChange(it) }
@@ -89,9 +86,12 @@ fun SignUpScreen(
                 coroutineScope.launch {
                     if (success) {
                         snackBarHostState.showSnackbar(
-                            message = "Account created successfully. Sign in now!",
-                            duration = SnackbarDuration.Long
+                            message = "Account created successfully. Signing in!",
+                            duration = SnackbarDuration.Short
                         )
+                        navController.navigate(Destinations.Home) {
+                            popUpTo(navController.graph.startDestinationId) { inclusive = true }
+                        }
                     } else {
                         snackBarHostState.showSnackbar(
                             message = "Invalid email or password",
@@ -125,6 +125,12 @@ fun SignUpScreen(
                 shape = RoundedCornerShape(15.dp)
             ) {
                 Text(text = data.visuals.message, color = MainWhite)
+                Spacer(Modifier.height(16.dp))
+                CircularProgressIndicator(
+                    modifier = Modifier.size(100.dp),
+                    color = MainWhite,
+                    strokeWidth = 3.dp
+                )
             }
         }
     )

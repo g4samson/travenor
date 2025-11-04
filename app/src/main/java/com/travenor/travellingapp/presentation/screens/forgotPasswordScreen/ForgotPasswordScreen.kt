@@ -26,20 +26,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.travenor.travellingapp.data.utils.Destinations
 import com.travenor.travellingapp.presentation.composable.DefaultButton
 import com.travenor.travellingapp.presentation.composable.DefaultTextField
-import com.travenor.travellingapp.presentation.composable.H1Text
-import com.travenor.travellingapp.presentation.composable.H2Text
 import com.travenor.travellingapp.presentation.composable.TopAppBarComponent
 import com.travenor.travellingapp.presentation.theme.MainWhite
 import com.travenor.travellingapp.presentation.theme.SubTextColor
 import com.travenor.travellingapp.presentation.theme.TextColor
+import com.travenor.travellingapp.presentation.theme.Typography
 import kotlinx.coroutines.launch
 
 @Composable
 fun ForgotPasswordScreen(
-    navController: NavHostController,
+    navController: NavHostController = rememberNavController(),
     viewModel: ForgotPasswordViewModel = hiltViewModel<ForgotPasswordViewModel>()
 ) {
     val email by viewModel.email.collectAsState()
@@ -58,9 +58,9 @@ fun ForgotPasswordScreen(
     ) {
         Spacer(Modifier.height(140.dp))
 
-        H1Text("Forgot password", 26.sp, TextColor, 34.sp, Modifier)
+        Text("Forgot password", style = Typography.titleMedium)
         Spacer(Modifier.height(12.dp))
-        H2Text("Enter your email account to reset  your password", 16.sp, SubTextColor, 20.sp, Modifier)
+        Text("Enter your email account to reset  your password", style = Typography.bodyMedium)
         Spacer(Modifier.height(40.dp))
 
         DefaultTextField("Email Address", false) { viewModel.onEmailChange(it) }
@@ -74,8 +74,8 @@ fun ForgotPasswordScreen(
                 coroutineScope.launch {
                     if (success) {
                         snackBarHostState.showSnackbar(
-                            message = "Check your email",
-                            duration = SnackbarDuration.Short
+                            message = "Check your email!",
+                            duration = SnackbarDuration.Long
                         )
                     } else {
                         snackBarHostState.showSnackbar(

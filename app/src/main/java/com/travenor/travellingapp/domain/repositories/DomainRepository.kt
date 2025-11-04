@@ -7,6 +7,8 @@ interface DomainRepository {
     //auth
     suspend fun signIn(email: String, password: String): Boolean
     suspend fun signUp(email: String, password: String): Boolean
+    suspend fun resetPasswordEmail(email: String): Boolean
+
 
     //places
     suspend fun getPlaces(): List<PlaceDto>?

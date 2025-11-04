@@ -34,10 +34,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.travenor.travellingapp.R
+import com.travenor.travellingapp.presentation.theme.Action
 import com.travenor.travellingapp.presentation.theme.Gray
 import com.travenor.travellingapp.presentation.theme.SFUI
 import com.travenor.travellingapp.presentation.theme.SubTextColor
 import com.travenor.travellingapp.presentation.theme.TextColor
+import com.travenor.travellingapp.presentation.theme.Typography
 
 /**
  * A reusable text input field component used across the app for both regular and password fields.
@@ -108,10 +110,7 @@ fun DefaultTextField(label: String, passwordType: Boolean, onValueChange: (Strin
                                     .padding(bottom = 4.dp)
                             ) {
                                 Icon(
-                                    painter = if (passwordVisible)
-                                        painterResource(id = R.drawable.eye_opened)
-                                    else
-                                        painterResource(id = R.drawable.eye_closed),
+                                    painter = painterResource(if (passwordVisible) R.drawable.eye_opened else R.drawable.eye_closed),
                                     contentDescription = null,
                                     tint = SubTextColor
                                 )
@@ -141,11 +140,7 @@ fun DefaultTextField(label: String, passwordType: Boolean, onValueChange: (Strin
 
             Text(
                 "Password must be 8 character",
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Normal,
-                fontFamily = SFUI,
-                lineHeight = 16.sp,
-                color = SubTextColor
+                style = Typography.bodyMedium.copy(fontSize = 14.sp, lineHeight = 16.sp)
             )
         }
     }

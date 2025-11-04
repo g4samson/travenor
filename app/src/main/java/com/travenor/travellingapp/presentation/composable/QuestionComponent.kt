@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import com.travenor.travellingapp.presentation.theme.Action
 import com.travenor.travellingapp.presentation.theme.SFUI
 import com.travenor.travellingapp.presentation.theme.SubTextColor
+import com.travenor.travellingapp.presentation.theme.Typography
 
 @Composable
 fun QuestionComponent(text1: String, text2: String, paddingBottom: Dp, onClick: () -> Unit) {
@@ -31,20 +32,18 @@ fun QuestionComponent(text1: String, text2: String, paddingBottom: Dp, onClick: 
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
             Text(
                 "$text1 ",
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Normal,
-                fontFamily = SFUI,
-                color = SubTextColor,
-                lineHeight = 16.sp
+                style = Typography.bodyMedium.copy(fontSize = 14.sp, lineHeight = 16.sp)
             )
             Text(
                 text2,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Normal,
-                fontFamily = SFUI,
-                lineHeight = 16.sp,
-                color = Action,
-                modifier = Modifier.clickable(onClick = onClick) )
+                style = Typography.bodyMedium.copy(
+                    fontSize = 14.sp,
+                    lineHeight = 16.sp,
+                    color = Action,
+                    fontWeight = FontWeight.Medium
+                ),
+                modifier = Modifier.clickable(onClick = onClick)
+            )
         }
         Spacer(Modifier.height(20.dp))
         Text(

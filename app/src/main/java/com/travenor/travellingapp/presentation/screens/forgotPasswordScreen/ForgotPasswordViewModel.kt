@@ -23,7 +23,9 @@ class ForgotPasswordViewModel @Inject constructor(
 
     fun onResetPassword(onResult: (Boolean) -> Unit) {
         viewModelScope.launch {
-
+            val success = domainRepository.resetPasswordEmail(email = _email.value)
+            onResult(success)
         }
+        Log.d("GAV", _email.value)
     }
 }

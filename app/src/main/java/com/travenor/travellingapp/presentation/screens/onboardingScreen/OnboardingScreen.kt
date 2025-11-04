@@ -57,6 +57,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.rememberNavController
 import com.travenor.travellingapp.R
 import com.travenor.travellingapp.data.utils.Constants
 import com.travenor.travellingapp.data.utils.Destinations
@@ -68,12 +69,13 @@ import com.travenor.travellingapp.presentation.theme.GillSansMT
 import com.travenor.travellingapp.presentation.theme.MainWhite
 import com.travenor.travellingapp.presentation.theme.SubTextColor
 import com.travenor.travellingapp.presentation.theme.TextColor
+import com.travenor.travellingapp.presentation.theme.Typography
 import kotlinx.coroutines.launch
 import kotlin.io.path.Path
 
 @Composable
 fun OnboardingScreen(
-    navController: NavHostController,
+    navController: NavHostController = rememberNavController(),
     viewModel: OnboardingViewModel = hiltViewModel()
 ) {
     val scope = rememberCoroutineScope()
@@ -158,8 +160,8 @@ fun OnboardingScreen(
                         }
                     }
 
-                    var lastWordWidth by remember { mutableStateOf(0f) }
-                    var lastWordOffsetX by remember { mutableStateOf(0f) }
+//                    var lastWordWidth by remember { mutableStateOf(0f) }
+//                    var lastWordOffsetX by remember { mutableStateOf(0f) }
 
 
                     Spacer(modifier = Modifier.height(40.dp))
@@ -167,12 +169,7 @@ fun OnboardingScreen(
                     Column(modifier = Modifier.fillMaxWidth()) {
                         Text(
                             text = annotatedTitle,
-                            color = TextColor,
-                            fontSize = 30.sp,
-                            fontWeight = FontWeight.Black,
-                            lineHeight = 36.sp,
-                            textAlign = TextAlign.Center,
-                            fontFamily = Geometr,
+                            style = Typography.titleLarge,
                             modifier = Modifier.fillMaxWidth(),
 //                            onTextLayout = { layout ->
 //                                val lastWord = words.lastOrNull() ?: return@Text
@@ -226,14 +223,7 @@ fun OnboardingScreen(
                     }
 
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text(
-                        text = item.description,
-                        color = SubTextColor,
-                        fontSize = 24.sp,
-                        textAlign = TextAlign.Center,
-                        fontFamily = GillSansMT,
-                        fontWeight = FontWeight.Normal, lineHeight = 24.sp
-                    )
+                    Text(text = item.description, style = Typography.bodyMedium.copy(fontFamily = GillSansMT))
                     Spacer(modifier = Modifier.height(22.dp))
                     Icon(
                         painterResource(item.indicator),

@@ -25,4 +25,7 @@ data class PlaceDto(
 
     @SerialName("image")
     val image: String?,
+
+    @SerialName("feedbackNumber")
+    val feedbackNumber: Int,
 )

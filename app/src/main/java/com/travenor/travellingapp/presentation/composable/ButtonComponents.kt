@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import com.travenor.travellingapp.presentation.theme.MainWhite
 import com.travenor.travellingapp.presentation.theme.Primary
 import com.travenor.travellingapp.presentation.theme.SFUI
+import com.travenor.travellingapp.presentation.theme.Typography
 
 /**
  * A base button component that is most commonly used throughout the application.
@@ -52,17 +53,7 @@ fun DefaultButton(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(
-                text,
-                color = MainWhite,
-                fontSize = 14.sp,
-                letterSpacing = 1.sp,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth(),
-                fontFamily = SFUI,
-                fontWeight = FontWeight.SemiBold,
-                lineHeight = 20.sp
-            )
+            Text(text, style = Typography.bodyMedium.copy(color = MainWhite, fontWeight = FontWeight.SemiBold))
         }
     }
 }
