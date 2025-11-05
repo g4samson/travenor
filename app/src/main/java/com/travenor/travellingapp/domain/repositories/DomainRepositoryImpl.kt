@@ -3,11 +3,13 @@ package com.travenor.travellingapp.domain.repositories
 import android.util.Log
 import com.travenor.travellingapp.data.models.PlaceDto
 import com.travenor.travellingapp.data.providers.SupabaseModule
+import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.auth.Auth
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.auth.providers.builtin.Email
 import io.github.jan.supabase.storage.Storage
+import io.github.jan.supabase.storage.storage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -15,7 +17,8 @@ import javax.inject.Inject
 class DomainRepositoryImpl @Inject constructor(
     private val postgrest: Postgrest,
     private val storage: Storage,
-    private val auth: Auth
+    private val auth: Auth,
+    private val supabase: SupabaseClient
 ) : DomainRepository {
 
     //auth
@@ -78,6 +81,13 @@ class DomainRepositoryImpl @Inject constructor(
                 }
             }.decodeSingle<PlaceDto>()
         }
+    }
+
+    override suspend fun getImagePublicUrl(path: String?): String {
+        if (path.isNullOrEmpty()) return ""
+        val bucket = supabase.storage.from("place-images")
+        Log.e("IGV", bucket.publicUrl(path))
+        return bucket.publicUrl(path)
     }
 
     private fun buildImageUrl(imageFileName: String) =

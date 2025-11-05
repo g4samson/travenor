@@ -78,7 +78,7 @@ fun SplashScreen(
             contentAlignment = Alignment.Center
         ) {
             Icon(
-                painter = painterResource(R.drawable.main_logo),
+                painter = painterResource(R.drawable.logo_main),
                 contentDescription = null,
                 tint = MainWhite,
                 modifier = Modifier

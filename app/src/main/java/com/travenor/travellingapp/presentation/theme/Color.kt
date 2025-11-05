@@ -21,3 +21,4 @@ val SubTextColor = Color(0xFF7D848D) // 7D848D
 val Gray = Color(0xFFF7F7F9) // F7F7F9
 val BG = Color(0xFFCAEAFF) // CAEAFF
 val Star = Color(0xFFFFD336) // FFD336
+val FrameShape = Color(0xFFE5F4FF) // E5F4FF

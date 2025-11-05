@@ -48,13 +48,10 @@ fun DefaultButton(
             .clip(RoundedCornerShape(16.dp)),
         colors = ButtonDefaults.buttonColors(Primary)
     ) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(text, style = Typography.bodyMedium.copy(color = MainWhite, fontWeight = FontWeight.SemiBold))
-        }
+        Text(
+            text,
+            style = Typography.bodyMedium.copy(color = MainWhite, fontWeight = FontWeight.SemiBold)
+        )
     }
 }
 

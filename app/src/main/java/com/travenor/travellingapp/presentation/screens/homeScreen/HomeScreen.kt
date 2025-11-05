@@ -22,6 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -54,7 +55,7 @@ fun HomeScreen(
             Text(
                 "Explore the ",
                 style = Typography.titleMedium.copy(
-                    fontSize = 38.sp,
+                    fontSize = 38.sp, textAlign = TextAlign.Start,
                     fontWeight = FontWeight.Normal,
                     lineHeight = 50.sp, color = SecTextColor
                 ), modifier = Modifier.fillMaxWidth()
@@ -85,18 +86,18 @@ fun HomeScreen(
         Spacer(Modifier.height(40.dp))
 
         Row(
-            modifier = Modifier.padding(horizontal = 20.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
                 "Best Destination",
-                style = Typography.titleMedium.copy(fontSize = 20.sp, lineHeight = 28.sp)
+                style = Typography.titleMedium.copy(fontSize = 20.sp, lineHeight = 28.sp, textAlign = TextAlign.Start)
             )
             Text(
                 "View all",
                 style = Typography.bodyMedium.copy(
                     fontSize = 14.sp,
-                    lineHeight = 16.sp,
+                    lineHeight = 16.sp, textAlign = TextAlign.End,
                     color = Action
                 ), modifier = Modifier.clickable { }
             )
@@ -107,18 +108,17 @@ fun HomeScreen(
             LazyHorizontalGrid(
                 rows = GridCells.Fixed(1),
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth().height(400.dp)
                     .padding(start = 20.dp),
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(placeList) { place ->
                     PlaceListItem(place) {
-
                     }
                 }
             }
         } else {
-            Text("Product list is empty!", style = Typography.bodyMedium)
+            Text("List is empty!", style = Typography.bodyMedium)
         }
 
 

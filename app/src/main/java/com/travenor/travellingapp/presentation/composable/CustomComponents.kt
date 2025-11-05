@@ -29,7 +29,7 @@ fun SocialNetworkComponent(
         Row(horizontalArrangement = Arrangement.spacedBy(20.dp)) {
             IconButton(onClick = facebookOnClick, modifier = Modifier.size(44.dp)) {
                 Icon(
-                    painterResource(R.drawable.facebook),
+                    painterResource(R.drawable.social_facebook),
                     contentDescription = null,
                     tint = Color.Unspecified
                 )
@@ -37,7 +37,7 @@ fun SocialNetworkComponent(
 
             IconButton(onClick = instagramOnClick, modifier = Modifier.size(44.dp)) {
                 Icon(
-                    painterResource(R.drawable.instagram),
+                    painterResource(R.drawable.social_instagram),
                     contentDescription = null,
                     tint = Color.Unspecified
                 )
@@ -45,7 +45,7 @@ fun SocialNetworkComponent(
 
             IconButton(onClick = twitterOnClick, modifier = Modifier.size(44.dp)) {
                 Icon(
-                    painterResource(R.drawable.twitter),
+                    painterResource(R.drawable.social_twitter),
                     contentDescription = null,
                     tint = Color.Unspecified
                 )

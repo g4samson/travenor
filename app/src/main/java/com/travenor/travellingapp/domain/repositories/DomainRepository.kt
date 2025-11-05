@@ -13,4 +13,6 @@ interface DomainRepository {
     //places
     suspend fun getPlaces(): List<PlaceDto>?
     suspend fun getPlace(id: String): PlaceDto
+
+    suspend fun getImagePublicUrl(path: String?): String
 }
