@@ -1,6 +1,7 @@
 package com.travenor.travellingapp.data.utils
 
 import com.travenor.travellingapp.R
+import com.travenor.travellingapp.data.models.NavItemData
 import com.travenor.travellingapp.data.models.OnboardingItem
 import kotlinx.serialization.Serializable
 
@@ -24,6 +25,14 @@ object Constants {
             image = R.drawable.onboard_img_3,
             indicator = R.drawable.onboard_ind_3
         )
+    )
+
+    val navs = listOf<NavItemData>(
+        NavItemData(R.drawable.bottom_nav_home, "Home", Destinations.Home),
+        NavItemData(R.drawable.bottom_nav_calendar, "Calendar", Destinations.Home),
+        NavItemData(R.drawable.bottom_nav_search, "", Destinations.Home),
+        NavItemData(R.drawable.bottom_nav_chat, "Messages", Destinations.Home),
+        NavItemData(R.drawable.bottom_nav_profile, "Profile", Destinations.Home),
     )
 
 }
@@ -53,6 +62,10 @@ sealed class Destinations {
             Home
         )
 
+        var topBppEnabledItems = listOf(
+            Home
+        )
+
         fun tryParse(objName: String): Destinations? {
 
             return when(objName) {
@@ -70,6 +83,11 @@ sealed class Destinations {
         fun isBottomBarShouldBeShown(destinationName: String): Boolean {
             val obj = tryParse(destinationName)
             return bottomBarEnabledItems.contains(obj)
+        }
+
+        fun isTopBarShouldBeShown(destinationName: String?): Boolean {
+            val obj = tryParse(destinationName ?: "")
+            return obj != null && topBppEnabledItems.contains(obj)
         }
     }
 }

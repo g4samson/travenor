@@ -1,6 +1,7 @@
 package com.travenor.travellingapp.presentation.screens
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -19,6 +20,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.travenor.travellingapp.data.utils.Destinations
 import com.travenor.travellingapp.presentation.composable.NavGraph
+import com.travenor.travellingapp.presentation.composable.bottomAppBarComponent.BottomAppBarComponent
 import com.travenor.travellingapp.presentation.screens.onboardingScreen.OnboardingViewModel
 import com.travenor.travellingapp.presentation.theme.TravellingAppTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,24 +40,31 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
 
                 val isBottomBarShouldBeShown = remember { mutableStateOf(true) }
-//                val isTopBarShouldBeShown = remember { mutableStateOf(true) }
+                val isTopBarShouldBeShown = remember { mutableStateOf(true) }
 
                 navController.addOnDestinationChangedListener { controller, _, _ ->
                     val route = controller.currentDestination?.route?.substringAfterLast(".")
                     isBottomBarShouldBeShown.value =
                         Destinations.isBottomBarShouldBeShown(route ?: "")
-//                    isTopBarShouldBeShown.value = Destinations.isTopBarShouldBeShown(route ?: "")
+                    Log.i("UI", isBottomBarShouldBeShown.value.toString())
+                    isTopBarShouldBeShown.value =
+                        Destinations.isTopBarShouldBeShown(route ?: "")
                 }
 
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    bottomBar = {
+                            BottomAppBarComponent(navController)
 
-                    Scaffold(modifier = Modifier.Companion.fillMaxSize()) { innerPadding ->
-                        NavGraph(
-                            navController = navController,
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(innerPadding)
-                        )
-                    }
+                    }) { innerPadding ->
+
+                    NavGraph(
+                        navController = navController,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding)
+                    )
+                }
 
             }
         }

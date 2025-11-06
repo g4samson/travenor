@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -151,14 +152,17 @@ fun SignInScreen(
                 contentColor = MainWhite,
                 shape = RoundedCornerShape(15.dp)
             ) {
-                Text(text = data.visuals.message, color = MainWhite)
+                Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(text = data.visuals.message, color = MainWhite)
+                    Spacer(Modifier.height(16.dp))
+                    CircularProgressIndicator(
+                        modifier = Modifier.width(50.dp),
+                        color = MainWhite,
+                        strokeWidth = 3.dp
+                    )
+                }
+
             }
-            Spacer(Modifier.height(16.dp))
-            CircularProgressIndicator(
-                modifier = Modifier.fillMaxWidth(),
-                color = MainWhite,
-                strokeWidth = 3.dp
-            )
         }
     )
 

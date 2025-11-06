@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -87,7 +88,7 @@ fun HomeScreen(
 
         Row(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 "Best Destination",
@@ -116,12 +117,11 @@ fun HomeScreen(
                     PlaceListItem(place) {
                     }
                 }
+
+                item { Spacer(Modifier.width(10.dp)) }
             }
         } else {
             Text("List is empty!", style = Typography.bodyMedium)
         }
-
-
-
     }
 }
