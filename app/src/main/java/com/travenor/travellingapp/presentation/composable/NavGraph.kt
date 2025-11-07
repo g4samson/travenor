@@ -5,11 +5,13 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
 import com.travenor.travellingapp.data.utils.Destinations
 import com.travenor.travellingapp.presentation.screens.forgotPasswordScreen.ForgotPasswordScreen
 import com.travenor.travellingapp.presentation.screens.homeScreen.HomeScreen
 import com.travenor.travellingapp.presentation.screens.onboardingScreen.OnboardingScreen
 import com.travenor.travellingapp.presentation.screens.onboardingScreen.OnboardingViewModel
+import com.travenor.travellingapp.presentation.screens.placeDetailsScreen.PlaceDetailsScreen
 import com.travenor.travellingapp.presentation.screens.signInScreen.SignInScreen
 import com.travenor.travellingapp.presentation.screens.signUpScreen.SignUpScreen
 import com.travenor.travellingapp.presentation.screens.splashScreen.SplashScreen
@@ -30,6 +32,13 @@ fun NavGraph(
 
 
         composable<Destinations.Home> { HomeScreen(navController) }
+        composable<Destinations.PlaceDetails> { backStackEntry ->
+            val args = backStackEntry.toRoute<Destinations.PlaceDetails>()
+            PlaceDetailsScreen(
+                navController = navController,
+                placeId = args.placeId
+            )
+        }
     }
     
 }

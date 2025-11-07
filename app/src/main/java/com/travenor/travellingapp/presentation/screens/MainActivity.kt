@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
                 val isTopBarShouldBeShown = remember { mutableStateOf(true) }
 
                 navController.addOnDestinationChangedListener { controller, _, _ ->
-                    val route = controller.currentDestination?.route?.substringAfterLast(".")
+                    val route = controller.currentDestination?.route
                     isBottomBarShouldBeShown.value =
                         Destinations.isBottomBarShouldBeShown(route ?: "")
                     Log.i("UI", isBottomBarShouldBeShown.value.toString())
@@ -54,7 +54,10 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     bottomBar = {
+                        if (isBottomBarShouldBeShown.value) {
                             BottomAppBarComponent(navController)
+
+                        }
 
                     }) { innerPadding ->
 

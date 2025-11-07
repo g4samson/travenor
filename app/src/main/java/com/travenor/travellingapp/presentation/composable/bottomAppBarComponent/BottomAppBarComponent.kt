@@ -41,7 +41,7 @@ import com.travenor.travellingapp.presentation.theme.Typography
 
 @Composable
 fun BottomAppBarComponent(
-    navController: NavHostController = rememberNavController(),
+    navController: NavHostController,
     viewModel: BottomAppBarViewModel = hiltViewModel()
 ) {
     val selectedIndex by viewModel.selectedIndex.collectAsState()

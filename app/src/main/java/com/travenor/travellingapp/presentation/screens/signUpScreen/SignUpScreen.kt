@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -35,7 +34,7 @@ import com.travenor.travellingapp.presentation.composable.DefaultButton
 import com.travenor.travellingapp.presentation.composable.DefaultTextField
 import com.travenor.travellingapp.presentation.composable.QuestionComponent
 import com.travenor.travellingapp.presentation.composable.SocialNetworkComponent
-import com.travenor.travellingapp.presentation.composable.TopAppBarComponent
+import com.travenor.travellingapp.presentation.composable.topAppBarComponent.TopAppBarComponent
 import com.travenor.travellingapp.presentation.theme.MainWhite
 import com.travenor.travellingapp.presentation.theme.TextColor
 import com.travenor.travellingapp.presentation.theme.Typography

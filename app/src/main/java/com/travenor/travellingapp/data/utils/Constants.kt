@@ -1,5 +1,6 @@
 package com.travenor.travellingapp.data.utils
 
+import android.util.Log
 import com.travenor.travellingapp.R
 import com.travenor.travellingapp.data.models.NavItemData
 import com.travenor.travellingapp.data.models.OnboardingItem
@@ -56,38 +57,39 @@ sealed class Destinations {
     @Serializable
     object Home: Destinations()
 
+    @Serializable
+    data class PlaceDetails(val placeId: String) : Destinations()
+
 
     companion object {
         var bottomBarEnabledItems = listOf(
-            Home
+            "Home"
         )
 
-        var topBppEnabledItems = listOf(
-            Home
+        var topBarEnabledItems = listOf(
+            "Home"
         )
 
         fun tryParse(objName: String): Destinations? {
-
-            return when(objName) {
-                "Splash" -> Splash
-                "Onboarding" -> Onboarding
-                "SignIn" -> SignIn
-                "SignUp" -> SignUp
-                "ForgotPassword" -> ForgotPassword
-                "Home" -> Home
-
+            return when {
+                objName.endsWith("Splash") -> Splash
+                objName.endsWith("Onboarding") -> Onboarding
+                objName.endsWith("SignIn") -> SignIn
+                objName.endsWith("SignUp") -> SignUp
+                objName.endsWith("ForgotPassword") -> ForgotPassword
+                objName.endsWith("Home") -> Home
                 else -> null
             }
         }
 
         fun isBottomBarShouldBeShown(destinationName: String): Boolean {
-            val obj = tryParse(destinationName)
-            return bottomBarEnabledItems.contains(obj)
+            val objName = destinationName.substringAfterLast(".")
+            return bottomBarEnabledItems.contains(objName)
         }
 
-        fun isTopBarShouldBeShown(destinationName: String?): Boolean {
-            val obj = tryParse(destinationName ?: "")
-            return obj != null && topBppEnabledItems.contains(obj)
+        fun isTopBarShouldBeShown(destinationName: String): Boolean {
+            val objName = destinationName.substringAfterLast(".")
+            return topBarEnabledItems.contains(objName)
         }
     }
 }

@@ -3,6 +3,7 @@ package com.travenor.travellingapp.presentation.composable.cardComponents
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,19 +23,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.AsyncImage
 import com.travenor.travellingapp.R
 import com.travenor.travellingapp.data.models.Place
 import com.travenor.travellingapp.presentation.theme.FrameShape
@@ -54,10 +55,15 @@ fun PlaceListItem(
         viewModel.loadImage(place.image)
     }
 
+    val context = LocalContext.current
+    val imageRes = remember(place.image) {
+        context.resources.getIdentifier(place.image, "drawable", context.packageName)
+    }
+
     Column(
         modifier = Modifier
-            .height(380.dp)
-            .width(270.dp)
+            .height(410.dp)
+            .width(300.dp)
             .background(MainWhite, RoundedCornerShape(24.dp))
             .border(1.dp, SubTextColor, RoundedCornerShape(24.dp))
             .clip(RoundedCornerShape(24.dp))
@@ -89,10 +95,10 @@ fun PlaceListItem(
 //            }
 
             Image(
-                painterResource(R.drawable.nilardi),
+                painterResource(imageRes),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth().clickable(onClick = onClick)
             )
             IconButton(
                 onClick = { viewModel.onFavouriteChange(!favourite) },
@@ -101,7 +107,7 @@ fun PlaceListItem(
                     .align(Alignment.TopEnd)
             ) {
                 Icon(
-                    painterResource(R.drawable.btn_favourite),
+                    painterResource(R.drawable.btn_favourite_small),
                     contentDescription = null,
                     tint = if (favourite) Star else Color.Unspecified,
                     modifier = Modifier.fillMaxSize()
@@ -195,7 +201,7 @@ fun PlaceListItem(
                             .clip(RoundedCornerShape(12.dp)), contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            "+${place.feedbackNumber.toString()}",
+                            if (place.feedbackNumber > 50) "+50" else place.feedbackNumber.toString(),
                             style = Typography.titleMedium.copy(
                                 fontSize = 11.sp,
                                 lineHeight = 13.sp,

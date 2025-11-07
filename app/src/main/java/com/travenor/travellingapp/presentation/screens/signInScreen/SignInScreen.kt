@@ -39,10 +39,9 @@ import com.travenor.travellingapp.presentation.composable.DefaultButton
 import com.travenor.travellingapp.presentation.composable.DefaultTextField
 import com.travenor.travellingapp.presentation.composable.QuestionComponent
 import com.travenor.travellingapp.presentation.composable.SocialNetworkComponent
-import com.travenor.travellingapp.presentation.composable.TopAppBarComponent
+import com.travenor.travellingapp.presentation.composable.topAppBarComponent.TopAppBarComponent
 import com.travenor.travellingapp.presentation.theme.Action
 import com.travenor.travellingapp.presentation.theme.MainWhite
-import com.travenor.travellingapp.presentation.theme.SFUI
 import com.travenor.travellingapp.presentation.theme.TextColor
 import com.travenor.travellingapp.presentation.theme.Typography
 import kotlinx.coroutines.launch
